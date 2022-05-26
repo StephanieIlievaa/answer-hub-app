@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { AppBarComponent } from "./components/Appbar/AppBarComponent";
+import {SideBar} from "./components/SideBar/SideBar";
+import "./App.css";
+import { PropsWithChildren, useState } from "react";
+import {
+  createTheme,
+  ThemeProvider,
+  CssBaseline,
+  TextField,
+} from "@mui/material";
 
-function App() {
+const App: React.FC = (): JSX.Element => {
+  const [themeMode, setThemeMode] = React.useState<"light" | "dark">("dark");
+const [sideBarToggle, setSideBarToggle] = useState<boolean>(false);
+  const theme = createTheme({
+    palette: { mode: themeMode },
+    typography: { fontSize: 14 },
+  });
+  const handleDrawerToggle = React.useCallback(() => {
+    setSideBarToggle(!sideBarToggle);
+  }, [sideBarToggle]);
+  const onThemeChange = React.useCallback(() => {
+    //toggle drawer her
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppBarComponent
+        handleDrawerToggle={handleDrawerToggle}
+        onThemeChange={onThemeChange}
+      />
+      <SideBar isOpen={sideBarToggle} handleDrawerToggle={handleDrawerToggle}/>
+    </ThemeProvider>
   );
-}
-
+};
 export default App;
