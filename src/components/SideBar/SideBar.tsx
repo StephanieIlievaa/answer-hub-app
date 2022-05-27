@@ -2,8 +2,8 @@ import styled from "@mui/material/styles/styled";
 import { Drawer, IconButton, Typography } from "@mui/material";
 import { randomFillSync } from "crypto";
 import React from "react";
-import { ChevronLeftOutlined, ChevronRightOutlined } from "@mui/icons-material";
-import { useTheme } from "@emotion/react";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+import { useTheme } from "@mui/material/styles";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -55,11 +55,7 @@ export const SideBar: React.FC<Props> = ({
             </Typography>
           </LogoStyled>
           <IconButton onClick={handleDrawerToggle}>
-            {/* {theme.direction === "ltr" ? (
-              <ChevronLeftOutlined />
-            ) : (
-              <ChevronRightOutlined />
-            )} */}
+            {theme.direction === "ltr" ? <ChevronLeft /> : <ChevronRight />}
           </IconButton>
         </DrawerHeader>
       </Drawer>
