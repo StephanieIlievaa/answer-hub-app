@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { QuestionContainer} from "./components/Questions/QuestionContainer";
 import { AppBarComponent } from "./components/Appbar/AppBarComponent";
-import {SideBar} from "./components/SideBar/SideBar";
+import { SideBar } from "./components/SideBar/SideBar";
 import "./App.css";
 import { PropsWithChildren, useState } from "react";
 import {
@@ -12,7 +13,8 @@ import {
 
 const App: React.FC = (): JSX.Element => {
   const [themeMode, setThemeMode] = React.useState<"light" | "dark">("dark");
-const [sideBarToggle, setSideBarToggle] = useState<boolean>(false);
+  const [sideBarToggle, setSideBarToggle] = useState<boolean>(false);
+  const [users, setUsers] = useState<any>([]);
   const theme = createTheme({
     palette: { mode: themeMode },
     typography: { fontSize: 14 },
@@ -21,8 +23,15 @@ const [sideBarToggle, setSideBarToggle] = useState<boolean>(false);
     setSideBarToggle(!sideBarToggle);
   }, [sideBarToggle]);
   const onThemeChange = React.useCallback(() => {
-   setThemeMode(themeMode === "light" ? "dark" : "light");
+    setThemeMode(themeMode === "light" ? "dark" : "light");
   }, [themeMode]);
+
+  useEffect(() => {
+    fetch("https://questions-dev.herokuapp.com/questions")
+      .then((response) => response.json())
+      .then((json) => setUsers(json));
+  }, []);
+  console.log(users);
 
   return (
     <ThemeProvider theme={theme}>
@@ -32,8 +41,10 @@ const [sideBarToggle, setSideBarToggle] = useState<boolean>(false);
         onThemeChange={onThemeChange}
         themeMode={themeMode}
       />
-      <SideBar isOpen={sideBarToggle} handleDrawerToggle={handleDrawerToggle}/>
+      <SideBar isOpen={sideBarToggle} handleDrawerToggle={handleDrawerToggle} />
+      <QuestionContainer users={users} />
     </ThemeProvider>
+
   );
 };
 export default App;
