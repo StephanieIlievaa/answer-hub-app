@@ -21,8 +21,8 @@ const [sideBarToggle, setSideBarToggle] = useState<boolean>(false);
     setSideBarToggle(!sideBarToggle);
   }, [sideBarToggle]);
   const onThemeChange = React.useCallback(() => {
-    //toggle drawer her
-  }, []);
+   setThemeMode(themeMode === "light" ? "dark" : "light");
+  }, [themeMode]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -30,6 +30,7 @@ const [sideBarToggle, setSideBarToggle] = useState<boolean>(false);
       <AppBarComponent
         handleDrawerToggle={handleDrawerToggle}
         onThemeChange={onThemeChange}
+        themeMode={themeMode}
       />
       <SideBar isOpen={sideBarToggle} handleDrawerToggle={handleDrawerToggle}/>
     </ThemeProvider>
