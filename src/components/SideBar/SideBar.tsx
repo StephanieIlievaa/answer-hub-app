@@ -51,7 +51,9 @@ export const SideBar: React.FC<Props> = ({
         <DrawerHeader>
           <LogoStyled>
             <Typography variant="subtitle2" component="div" align="left">
-              Logo
+              <a href="https://www.freeiconspng.com/img/21624">
+                <img src="./qa.png" width="50" alt="Simple Q And A Png" />
+              </a>
             </Typography>
           </LogoStyled>
           <IconButton onClick={handleDrawerToggle}>
