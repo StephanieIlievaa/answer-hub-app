@@ -51,7 +51,7 @@ export const SideBar: React.FC<Props> = ({
         <DrawerHeader>
           <LogoStyled>
             <Typography variant="subtitle2" component="div" align="left">
-              <a href="https://www.freeiconspng.com/img/21624">
+              <a href="https://www.freeionspng.com/img/21624">
                 <img src="./qa.png" width="50" alt="Simple Q And A Png" />
               </a>
             </Typography>

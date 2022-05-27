@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Question.module.scss";
 
 interface Props {
   id: number;
@@ -16,8 +17,9 @@ export const Question: React.FC<Props> = ({
   avatar,
 }): JSX.Element => {
   return (
-    <div>
-      <h3>Question:{question}</h3>
+    <div className={styles.questionItem}>
+      <img src="./icon-question.png" alt="icon"  width="50" height="50"/>
+      <div className={styles.question}>{question}</div>
       <p>XP:{xp}</p>
       <h5>{name}</h5>
       <img src={avatar} width="50" height="50" />
