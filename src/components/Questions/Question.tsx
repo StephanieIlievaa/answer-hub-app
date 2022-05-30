@@ -51,7 +51,7 @@ export const Question: React.FC<Props> = ({
       container
       style={{ height: "95px", maxWidth: "925px", color: color }}
       className={styles.questionItem}
-      onClick={handleOpen}
+      onClick={open ? handleClose : handleOpen}
     >
       <Grid item xs={6} className={styles.left}>
         <img
@@ -89,22 +89,20 @@ export const Question: React.FC<Props> = ({
         </div>
         <img className={styles.avatar} src={avatar} width="50" height="50" />
       </Grid>
-      <Backdrop handleClose={open ? handleClose : handleOpen}>
-        <Modal
-          open={open}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-          </Box>
-        </Modal>
-      </Backdrop>
+      <Modal
+        open={open}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
     </Grid>
   );
 };
